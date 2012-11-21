@@ -1,10 +1,8 @@
-import AssemblyKeys._
-
 name := "monkeyman"
 
-version := "0.2"
+version := "0.21"
 
-scalaVersion := "2.8.1"
+scalaVersion := "2.9.2"
 
 libraryDependencies ++= Seq(
   "org.pegdown" % "pegdown" % "1.1.0",
@@ -28,22 +26,6 @@ resolvers ++= Seq(
   "asusual" at "http://www.asual.com/maven/content/groups/public"
 )
 
-initialCommands in console := "import java.io._; import nl.flotsam.monkeyman._"
 
-mainClass in (Compile, run) := Some("nl.flotsam.monkeyman.Monkeyman")
 
-mainClass in (Compile, packageBin) := Some("nl.flotsam.monkeyman.Monkeyman")
 
-seq(ProguardPlugin.proguardSettings :_*)
-
-proguardOptions ++= List(keepMain("nl.flotsam.monkeyman.Monkeyman"), "-keepclasseswithmembers class org.pegdown.**", "-keepclasseswithmembers class org.parboiled.**")
-
-seq(assemblySettings: _*)
-
-mainClass in assembly := Some("nl.flotsam.monkeyman.Monkeyman")
-
-jarName in assembly := "monkeyman.jar"
-
-fork in run := true
-
-connectInput in run := true
